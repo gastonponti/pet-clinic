@@ -45,6 +45,15 @@ public class Player extends Model {
         return find.all();
     }
 
-	
+    /**
+     * Authenticate a User.
+     */
+    public static Player authenticate(String email, String password) {
+        return find.where()
+            .eq("email", email)
+            .eq("password", password)
+            .findUnique();
+    }
+
 	
 }
