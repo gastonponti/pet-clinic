@@ -32,4 +32,11 @@ public class FutbolMatch extends Model {
 	@Formats.DateTime(pattern="yyyy-MM-dd HH:mm")
 	public Date matchDate;
 	
+	public MatchState state;
+
+    public static Model.Finder<Long,FutbolMatch> find = new Model.Finder(Long.class, FutbolMatch.class);
+	
+	public static FutbolMatch findNextMatch() {
+		return find.where().gt("match_date", new Date()).orderBy("match_date").findList().get(0);
+	}
 }

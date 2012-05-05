@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.validation.Constraint;
 
 import play.db.ebean.*;
@@ -44,6 +45,12 @@ public class Player extends Model {
     public static List<Player> findAll() {
         return find.all();
     }
+    
+    public static Player getUserByMail(String email) {
+        return find.where()
+        	.eq("email", email)
+        	.findUnique();
+    }
 
     /**
      * Authenticate a User.
@@ -55,5 +62,7 @@ public class Player extends Model {
             .findUnique();
     }
 
-	
+	public FutbolMatch giveMeTheLastMatch() {
+		return FutbolMatch.findNextMatch();
+	}
 }

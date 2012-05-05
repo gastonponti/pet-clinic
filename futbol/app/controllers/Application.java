@@ -28,7 +28,7 @@ public class Application extends Controller {
      */
     public static Result login() {
         return ok(
-            login.render(form(Login.class))
+            views.html.login.render(form(Login.class))
         );
     }
     
@@ -38,11 +38,11 @@ public class Application extends Controller {
     public static Result authenticate() {
         Form<Login> loginForm = form(Login.class).bindFromRequest();
         if(loginForm.hasErrors()) {
-            return badRequest(login.render(loginForm));
+            return badRequest(views.html.login.render(loginForm));
         } else {
             session("email", loginForm.get().email);
             return redirect(
-                routes.UserPage.index()
+                routes.UserPage.userPage()
             );
         }
     }
