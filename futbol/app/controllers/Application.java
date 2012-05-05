@@ -42,7 +42,7 @@ public class Application extends Controller {
         } else {
             session("email", loginForm.get().email);
             return redirect(
-                routes.Application.index()
+                routes.UserPage.index()
             );
         }
     }
