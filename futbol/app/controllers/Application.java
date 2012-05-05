@@ -14,7 +14,7 @@ public class Application extends Controller {
   
   
   public static Result playersList() {
-	  return ok(admin.render(Player.findAll()));
+	  return ok(views.html.admin.render(Player.findAll()));
   }
   
 }

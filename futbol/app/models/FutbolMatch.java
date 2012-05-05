@@ -3,6 +3,7 @@ package models;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -17,7 +18,7 @@ import play.data.validation.*;
 import com.avaje.ebean.*;
 
 @Entity
-public class Match extends Model {
+public class FutbolMatch extends Model {
 	
 	@Id
 	public Long id;
@@ -25,10 +26,10 @@ public class Match extends Model {
 	@OneToOne
 	public Stadium stadium;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	public List<Player> players;
 
 	@Formats.DateTime(pattern="yyyy-MM-dd HH:mm")
-	public Date date;
+	public Date matchDate;
 	
 }
