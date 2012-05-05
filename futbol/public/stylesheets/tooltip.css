@@ -1,0 +1,21 @@
+.usuarioposicion{
+	position: relative;
+	padding: 2px;
+}
+
+.tooltip{
+position: absolute;
+z-index: 999;
+
+display: none;
+width: 50px;
+height: 60px;
+padding: 6px;
+background-color: #4D4D4D;
+
+}
+
+.tooltip img{
+width: 50px;
+height: 60px;
+}

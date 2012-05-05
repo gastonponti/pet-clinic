@@ -1,0 +1,85 @@
+.contenedor_subirimagen{
+	width: 268px;
+	height: 133px;
+	background-image: url(../imgs/contenedor-subirimagen.png);
+	padding: 32px;
+	position: fixed;
+	top: 150px;
+	left: 43%;
+	z-index: 10;
+
+}
+
+
+.contenedor_hijo_subirimagen{
+	width: 227px;
+	height: 107px;
+	background-image: url(../imgs/contenedor-hijo-subirimagen.jpg);
+	padding: 16px;
+	position: relative;
+}
+
+.contenedor_hijo_subirimagen p{
+	background: none;
+	width: auto;
+	height: auto;
+}
+
+
+
+
+.contenedor_hijo_subirimagen > p{
+    color: #999999;
+    font-family: Univers;
+    font-size: 12px;
+    font-weight: 100;
+	}
+
+
+p.errorsubida{
+	color: #FFB266;
+	float: left;
+}
+
+.cerrarbtn{
+background-image: url(../imgs/cerrarlogin.png);
+width: 12px;
+height: 12px;
+position: absolute;
+bottom: 15px;
+right: 15px;
+cursor: pointer;
+
+}
+
+
+
+input{
+	width: 186px;
+	height: 19px;
+	background-color: #F2F2F2;
+	border: none;
+	color: #808080;
+	margin-top: 5px;
+	
+}
+
+h2{
+font-family: Univers;
+color: #999999;
+font-size: 12px;
+font-weight: 100;
+margin-top: 5px;
+
+
+}
+
+
+.comprobarpassword{
+width: 90px;
+height: 20px;
+background-image: url(../imgs/cambiarpass.jpg);
+cursor: pointer;
+float: right;
+margin-top: 8px;
+}
