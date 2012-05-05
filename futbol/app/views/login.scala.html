@@ -1,51 +1,59 @@
 @(form: Form[Application.Login])
 
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
-    <head>
-        <title>Zentasks</title>
+	<head>
+		<title>Logueate!</title>
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
-        <link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
-    </head>
-    <body>
-        
-        <header>
-            <a href="@routes.UserPage.index" id="logo"><span>Zen</span>tasks</a>
-        </header>
-        
+        <link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.at("stylesheets/login.css")">
+	</head>
+	<body>
+	
+	<div id="contenedor">
+	
+		<div class="izquierda">
+			<h1>La pelota no se Mancha. Jug&aacute; el domingo</h1>
+			<div class="firma"></div>
+		</div>
+
         @helper.form(routes.Application.authenticate) {
-            
-            <h1>Sign in</h1>
-            
-            @if(form.hasGlobalErrors) { 
-                <p class="error">
-                    @form.globalError.message
-                </p>
-            }
-            
-            @if(flash.contains("success")) {
-                <p class="success">
-                    @flash.get("success")
-                </p>
-            }
-            
-            <p>
-                <input type="email" name="email" placeholder="Email" value="@form("email").value">
-            </p>
-            <p>
-                <input type="password" name="password" placeholder="Password">
-            </p>
-            <p>
-                <button type="submit">Login</button>
-            </p>
-            
+
+			<div id='formylinks'>
+	
+				<label>
+					<h2>USUARIO</h2>
+					<input type="email" name="email" placeholder="Email" value="@form("email").value">
+				</label>
+	
+				<label>
+					<h2>PASSWORD</h2>
+	                <input type="password" name="password" placeholder="Password">
+				</label>
+	            <button type="submit" name="enviar">Login</button>
+			
+		
+	            @if(form.hasGlobalErrors) { 
+	                <p class="error">
+	                    @form.globalError.message
+	                </p>
+	            }
+	            
+	            @if(flash.contains("success")) {
+	                <p class="success">
+	                    @flash.get("success")
+	                </p>
+	            }
+		
+				<div id='links'>
+	
+					<a href="forgotpass.php">olvide mi pass</a>
+	
+				</div>	
+		
+			</div>
+                        
         }
-        
-        <p class="note">
-            Try <em>guillaume@@sample.com</em> with <em>secret</em> as password.
-        </p>
-            
-    </body>
+	</div>
+	</body>
 </html>
-    
-
-
