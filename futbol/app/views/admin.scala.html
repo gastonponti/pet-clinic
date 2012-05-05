@@ -1,0 +1,12 @@
+@(players: List[Player])
+@import helper._
+@main("Lista de jugadores") {
+    <h1>@players.size()</h1>
+    <ul>
+        @for(player <- players) {
+            <li>
+                @player.name
+            </li>
+        }
+    </ul>
+}
