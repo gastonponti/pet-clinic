@@ -56,13 +56,16 @@ public class Player extends Model {
      * Authenticate a User.
      */
     public static Player authenticate(String email, String password) {
+    	System.out.println(email);
+    	System.out.println(password);
+    	
         return find.where()
             .eq("email", email)
             .eq("password", password)
             .findUnique();
     }
 
-	public FutbolMatch giveMeTheLastMatch() {
-		return FutbolMatch.findNextMatch();
+	public FootballMatch getClosestMatch() {
+		return FootballMatch.findNextMatch();
 	}
 }

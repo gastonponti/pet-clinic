@@ -1,6 +1,6 @@
 package controllers;
 
-import models.FutbolMatch;
+import models.FootballMatch;
 import models.Player;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -12,6 +12,9 @@ import views.html.*;
 public class UserPage extends Controller {
 
 	public static Result userPage() {
-    	return ok(views.html.userPage());
+		Player currPlayer = Player.getUserByMail(request().username());
+		FootballMatch closestMatch = currPlayer.getClosestMatch();
+		
+    	return ok(views.html.userPage.render(currPlayer, closestMatch));
     }
 }

@@ -1,14 +1,10 @@
-@(player: Model.Player, match: Model.FutbolMatch)
+@(player: Player, footballMatch: FootballMatch)
 @import helper._
 <!DOCTYPE html>
 <html>
 	<head>
 		<title>Ficha del Usuario</title>
-		<link rel="stylesheet" href="@routes.Assets.at("stylesheets/reseteo.css")"/>
-		<link rel="stylesheet" href="@routes.Assets.at("stylesheets/estilos2.css")"/>
-		<link rel="stylesheet" href="@routes.Assets.at("stylesheets/tooltip.css")"/>
-		<link rel="stylesheet" href="@routes.Assets.at("stylesheets/subirimagen.css")"/>
-		<link rel="stylesheet" href="@routes.Assets.at("stylesheets/listadonojuegan.css")"/>
+		<link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
 		<script type="text/javascript" src="@routes.Assets.at("javascript/social.js")"></script>
 		<script type="text/javascript" src="@routes.Assets.at("javascript/subirimagen.js")"></script>
 		<script type="text/javascript" src="@routes.Assets.at("javascript/decilequejuegue.js")"></script>
@@ -22,7 +18,7 @@
 			<div class="header">
 				<div id='usuario'>
 					<h2>BIENVENIDO</h2>
-					<h3>@player.name + " " + @player.lastName</h3>
+					<h3>@player.name @player.lastName</h3>
 				</div>
 				<div id='cerrar'><a href='logout.php'>cerrar sesion</a></div>
 			</div>
@@ -38,7 +34,7 @@
 						<div id="botonera">
 							<div id="misdatos">
 								<h2 class="titulo">MIS DATOS <span class="desplegable" id='desplegardatos'></span></h2>
-								<p id='usrname'>@player.username</p>
+								<p id='usrname'>@player.email</p>
 								
 								<div id="datospersonales">
 									<div class="linea"></div>
@@ -55,7 +51,13 @@
 						
 							<div id="estado">
 								<h2 class="titulo">ESTADO</h2>
-								<span>@match.state</span>
+								
+								@if(footballMatch != null) {
+									<span>@footballMatch.state</span>
+								} else {
+									<span>No hay partido asociado</span>								
+								}
+
 							</div>
 						
 							<div class="linea"></div>
@@ -66,52 +68,53 @@
 							</div>				
 						</div>
 					</div>
-				</div>
-			
-				<div id="contenedorcancha">
-					<div id="cancha">
-						@(1 to 10).foreach((i) => {
-							<div class='posicion' id='pos'+i>
-								@defining(@match.players.get(i-1)) { actualPlayer =>
-									@if(@actualPlayer != null) {
-										<div id=@actualPlayer.username class='usuarioposicion'>
-											<!-- <div class="tooltip">
-												<img src="imgs/uploads/santiagovazq805420714.jpg" alt="" />
-											</div> -->
-											<p>@actualPlayer.name</p>
-											<p>@actualPlayer.lastName</p>
-										</div>
-									}
-								})
-							</div>
-						}
-					</div>
-		
-					<div id="datospartido">
-			
-						<div id="datosfecha">
-							<h2 class="titulo">DATOS FECHA</h2>
-							<p>@match.matchDate</p>
-							<p>@match.stadium.name</p>
-							<p>@match.stadium.address</p>
-							<p>@match.stadium.telephone</p>				
-							<p class='estadopartido'>SE JUEGA!</p>
-						</div>
-				
-						<div class="linea"></div>
-				
-						<div id="faltan">
-							@if(@match.players.size() >= 10) {
-								<h2 class="titulo">ESTAMOS TODOS!</h2>
-							} else {	
-								<h2 class="titulo">FALTAN</h2>
-								<p><span id="contador"></span>/10</p>
+				</div>	
+				@if(footballMatch != null) {
+					<div id="contenedorcancha">
+						<div id="cancha">
+							@(1 to 10).foreach((i) => {
+								<div class='posicion' id='pos'+i>
+									@defining(footballMatch.players.get(0)) { actualPlayer =>
+										@if(actualPlayer != null) {
+											<div id=actualPlayer.username class='usuarioposicion'>
+												<!-- <div class="tooltip">
+													<img src="imgs/uploads/santiagovazq805420714.jpg" alt="" />
+												</div> -->
+												<p>actualPlayer.name</p>
+												<p>actualPlayer.lastName</p>
+											</div>
+										}
+									})
+								</div>
 							}
 						</div>
 			
-						<div class="linea"></div>
+						<div id="datospartido">
+				
+							<div id="datosfecha">
+								<h2 class="titulo">DATOS FECHA</h2>
+								<p>@footballMatch.matchDate</p>
+								<p>@footballMatch.stadium.name</p>
+								<p>@footballMatch.stadium.address</p>
+								<p>@footballMatch.stadium.telephone</p>				
+								<p class='estadopartido'>SE JUEGA!</p>
+							</div>
+					
+							<div class="linea"></div>
+					
+							<div id="faltan">
+								@if(footballMatch.players.size() >= 10) {
+									<h2 class="titulo">ESTAMOS TODOS!</h2>
+								} else {	
+									<h2 class="titulo">FALTAN</h2>
+									<p><span id="contador"></span>/10</p>
+								}
+							</div>
+				
+							<div class="linea"></div>
+						</div>
 					</div>
-				</div>
+				}
 			</div>
 		</div>
 	</body>

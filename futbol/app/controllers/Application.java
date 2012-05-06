@@ -3,6 +3,9 @@ package controllers;
 import models.Player;
 import play.*;
 import play.data.Form;
+import play.data.validation.Constraints.Email;
+import play.data.validation.Constraints.MinLength;
+import play.data.validation.Constraints.Required;
 import play.mvc.*;
 
 import views.html.*;
@@ -10,17 +13,27 @@ import views.html.*;
 public class Application extends Controller {
 
     public static class Login {
-        
+        @Required
+        @Email
         public String email;
+
+        @Required
         public String password;
         
+        public Login() {
+		}
+        
+        public Login(String email, String password) {
+        	this.email = email;
+        	this.password = password;
+        }
+
         public String validate() {
             if(Player.authenticate(email, password) == null) {
                 return "Invalid user or password";
             }
             return null;
         }
-        
     }
 
     /**
